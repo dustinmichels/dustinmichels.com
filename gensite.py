@@ -31,11 +31,12 @@ if __name__ == '__main__':
     # render each page in IN_DIR to OUT_DIR
     pages = [p for p in os.listdir(IN_DIR) if p != 'base.html']
     for page in pages:
-        
         template = env.get_template(page)
-        html_doc = template.render()
-        soup = BeautifulSoup(html_doc, 'html.parser')
-        new_html = soup.prettify()
+        template.stream().dump(f'{OUT_DIR}/{page}')
 
-        with open(f'{OUT_DIR}/{page}', 'w') as f:
-            f.write(new_html)
+        # html_doc = template.render()
+        # soup = BeautifulSoup(html_doc, 'html.parser')
+        # new_html = soup.prettify()
+
+        # with open(f'{OUT_DIR}/{page}', 'w') as f:
+        #     f.write(new_html)
