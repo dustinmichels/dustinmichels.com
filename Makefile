@@ -17,19 +17,18 @@ clean:
 
 .PHONY: clean-pycache
 clean-pycache:
-	find . -name __pycache__ -exec rm -rf {} +
-	@echo "Removed __pycache__"
+	@find . -name __pycache__ -exec rm -rf {} +
+	@echo "> Removed __pycache__"
 
 .PHONY: html
 html:
 	@$(PYTHON) -m gensite
 	make clean-pycache
-	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
+	@echo "> Build finished. The HTML pages are in $(BUILDDIR)."
 
 
 .PHONY: serve
 serve:
 	make html
-	cd $(BUILDDIR); echo "opening server"; \
-	$(PYTHON) -m http.server
+	@echo "> Opening server:";
+	@cd $(BUILDDIR); $(PYTHON) -m http.server
